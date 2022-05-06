@@ -123,6 +123,55 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &547903619
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 547903621}
+  - component: {fileID: 547903620}
+  m_Layer: 0
+  m_Name: Enemy Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &547903620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547903619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46ddfaed37be80d4f858c5c3b1d551cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 1478763926639530, guid: e5078c17b52bb014882bc0363c060079, type: 3}
+  prefabCount: 200
+  maxX: 100
+  maxY: 100
+  maxZ: 100
+  waitTime: 0
+--- !u!4 &547903621
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547903619}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,13 +361,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df547963c67018441a2a1de875434255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseTarget: {fileID: 2024068285}
-  Target1: {fileID: 2024068285}
+  target: {fileID: 2024068285}
   Target2: {fileID: 2024068285}
-  Target3: {fileID: 2024068285}
-  offsetPos: {x: -15, y: 10, z: -15}
   Timer: 0
-  rotSpeed: 1
+  RotateSpeed: 1
+  offsetPos: {x: -15, y: 10, z: -15}
 --- !u!1 &1135927603
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,10 +578,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df547963c67018441a2a1de875434255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseTarget: {fileID: 1135927607}
-  Target1: {fileID: 1135927607}
-  Target2: {fileID: 1135927607}
-  Target3: {fileID: 1135927607}
-  offsetPos: {x: 0, y: 0, z: 0}
+  target: {fileID: 1135927607}
+  Target2: {fileID: 547903621}
   Timer: 0
-  rotSpeed: 5
+  RotateSpeed: 1
+  offsetPos: {x: 0, y: 0, z: 0}
