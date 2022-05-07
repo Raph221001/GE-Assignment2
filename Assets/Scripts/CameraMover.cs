@@ -4,54 +4,66 @@ using UnityEngine;
 
 public class CameraMover : MonoBehaviour
 {
-    public Transform target; 
-    public Transform Target2;
-    public Transform Target3;
+    public Transform BaseTarget;
+    public Transform CameraTarget1;
+    public Transform CameraTarget2;
+    public Transform CameraTarget3;
 
+    [SerializeField] Vector3 offsetPos;
     [SerializeField] private float Timer = 0;
     [SerializeField] private float RotateSpeed = 1;
-    [SerializeField] Vector3 offsetPos;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    
     void Update()
     {
         Timer += Time.deltaTime;
 
-        if (Timer < 8)
+        if (Timer < 3)
         {
-            transform.position = Vector3.Lerp(transform.position, target.position, Time.deltaTime);
-            Vector3 lTargetDir = target.position - transform.position;
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(lTargetDir), Time.time * RotateSpeed);
-        }
-
-         if (Timer > 22 && Timer < 30)
-        {
-            transform.position = Vector3.Lerp(transform.position, Target2.position, Time.deltaTime);
-            Vector3 lTargetDir = Target2.position - transform.position;
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(lTargetDir), Time.time * RotateSpeed);
-        }
-
-        if (Timer > 8 && Timer < 22)
-        {
-            transform.position = Vector3.Slerp(transform.position, Target3.position+offsetPos, Time.deltaTime);
-            //transform.LookAt(Target1); 
+            transform.position = Vector3.Slerp(transform.position, BaseTarget.position+offsetPos, Time.deltaTime); 
             
-            Vector3 lTargetDir = Target3.position - transform.position;
+            Vector3 lTargetDir = CameraTarget1.position - transform.position;
+            
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(lTargetDir), Time.time * RotateSpeed);
+        }
+        
+        if (Timer > 3 && Timer < 15)
+        {
+            transform.position = Vector3.Slerp(transform.position, CameraTarget1.position+offsetPos, Time.deltaTime);
+            transform.LookAt(CameraTarget1); 
+            
+            Vector3 lTargetDir = CameraTarget1.position - transform.position;
             
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(lTargetDir), Time.time * RotateSpeed);
         }
 
-        if (Timer > 30)
+        if (Timer > 15 && Timer < 25)
         {
-            transform.position = Vector3.Lerp(transform.position, target.position, Time.deltaTime);
-            Vector3 lTargetDir = target.position - transform.position;
+            transform.position = Vector3.Slerp(transform.position, CameraTarget2.position+offsetPos, Time.deltaTime);
+            
+            Vector3 lTargetDir = CameraTarget2.position - transform.position;
+            
+            transform.LookAt(CameraTarget2); 
+        }
+        
+        if (Timer > 25 && Timer < 35)
+        {
+            transform.position = Vector3.Slerp(transform.position, CameraTarget3.position+offsetPos, Time.deltaTime);
+            transform.LookAt(CameraTarget3); 
+            
+            Vector3 lTargetDir = CameraTarget3.position - transform.position;
+            
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(lTargetDir), Time.time * RotateSpeed);
         }
+        
+        if (Timer > 35 && Timer < 60)
+        {
+            transform.position = Vector3.Slerp(transform.position, CameraTarget1.position+offsetPos, Time.deltaTime);
+            transform.LookAt(CameraTarget1); 
+            
+            Vector3 lTargetDir = CameraTarget1.position - transform.position;
+            
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(lTargetDir), Time.time * RotateSpeed);
+        }
+        
     }
 }

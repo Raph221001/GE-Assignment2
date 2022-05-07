@@ -11,7 +11,13 @@ public class FollowPath : SteeringBehaviour {
 
     public float waypointDistance = 5;
 
-    public int next = 0;
+    [SerializeField] private float targetVelocity = 10.0f;
+    [SerializeField] private int numberOfRays = 17;
+    [SerializeField] private float angle = 90;
+
+    [SerializeField] private float rayRange = 2;
+
+    //public int next = 0;
     public bool looped = true;
 
 
@@ -24,41 +30,16 @@ public class FollowPath : SteeringBehaviour {
         }
     }
 
-    public Vector3 NextWaypoint()
-    {
-        return path.waypoints[next];
-    }
-
-    public void AdvanceToNext()
-    {
-        if (looped)
-        {
-            next = (next + 1) % path.waypoints.Count;
-        }
-        else
-        {
-            if (next != path.waypoints.Count - 1)
-            {
-                next++;
-            }
-        }
-    }
-
-    public bool IsLast()
-    {
-        return next == path.waypoints.Count - 1;
-    }
-
 
     public override Vector3 Calculate()
     {
-        nextWaypoint = NextWaypoint();
+        nextWaypoint = path.NextWaypoint();
         if (Vector3.Distance(transform.position, nextWaypoint) < waypointDistance)
         {
-            AdvanceToNext();
+            path.AdvanceToNext();
         }
 
-        if (!looped && IsLast())
+        if (!looped && path.IsLast())
         {
             return boid.ArriveForce(nextWaypoint);
         }
