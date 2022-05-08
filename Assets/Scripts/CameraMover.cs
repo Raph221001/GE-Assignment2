@@ -8,6 +8,7 @@ public class CameraMover : MonoBehaviour
     public Transform CameraTarget1;
     public Transform CameraTarget2;
     public Transform CameraTarget3;
+    public Transform CameraTarget4;
 
     [SerializeField] Vector3 offsetPos;
     [SerializeField] private float Timer = 0;
@@ -55,7 +56,17 @@ public class CameraMover : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(lTargetDir), Time.time * RotateSpeed);
         }
         
-        if (Timer > 35 && Timer < 60)
+        if (Timer > 35 && Timer < 45)
+        {
+            transform.position = Vector3.Slerp(transform.position, CameraTarget4.position+offsetPos, Time.deltaTime);
+            transform.LookAt(CameraTarget4); 
+            
+            Vector3 lTargetDir = CameraTarget4.position - transform.position;
+            
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(lTargetDir), Time.time * RotateSpeed);
+        }
+
+        if (Timer > 45 && Timer < 70)
         {
             transform.position = Vector3.Slerp(transform.position, CameraTarget1.position+offsetPos, Time.deltaTime);
             transform.LookAt(CameraTarget1); 

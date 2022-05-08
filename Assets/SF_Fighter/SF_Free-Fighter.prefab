@@ -98,7 +98,7 @@ MonoBehaviour:
   jitter: 10
   target: {x: 50, y: 50, z: 50}
   worldTarget: {x: 0, y: 0, z: 0}
-  wideness: 500
+  wideness: 300
 --- !u!33 &33892153876024192
 MeshFilter:
   m_ObjectHideFlags: 0
